@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="documentmanagerModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="documentmanagerModelStoreContainer">
+          <EntitySet Name="action" EntityType="documentmanagerModel.Store.action" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="filetype" EntityType="documentmanagerModel.Store.filetype" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="standbook" EntityType="documentmanagerModel.Store.standbook" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="systemlog" EntityType="documentmanagerModel.Store.systemlog" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="taxpayer" EntityType="documentmanagerModel.Store.taxpayer" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="taxpayerdocument" EntityType="documentmanagerModel.Store.taxpayerdocument" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="taxpayertype" EntityType="documentmanagerModel.Store.taxpayertype" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="user" EntityType="documentmanagerModel.Store.user" store:Type="Tables" Schema="documentmanager" />
+          <EntitySet Name="useraction" EntityType="documentmanagerModel.Store.useraction" store:Type="Tables" Schema="documentmanager" />
+        </EntityContainer>
+        <EntityType Name="action">
+          <Key>
+            <PropertyRef Name="action_id" />
+          </Key>
+          <Property Name="action_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="action_name" Type="varchar" MaxLength="45" />
+          <Property Name="supper_action_id" Type="int" />
+        </EntityType>
+        <EntityType Name="filetype">
+          <Key>
+            <PropertyRef Name="file_type_id" />
+          </Key>
+          <Property Name="file_type_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="file_type_name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="standbook">
+          <Key>
+            <PropertyRef Name="standbook_id" />
+          </Key>
+          <Property Name="standbook_id" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="projectname" Type="varchar" MaxLength="45" />
+          <Property Name="totalmoney" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="taxpayername" Type="varchar" MaxLength="45" />
+          <Property Name="taxpayerpersonname" Type="varchar" MaxLength="45" />
+          <Property Name="capitalcontruction" Type="varchar" MaxLength="45" />
+          <Property Name="hasoutverify" Type="bit" />
+          <Property Name="paytime" Type="datetime" />
+          <Property Name="thispartmoney" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="hasaddedvaluetax" Type="bit" />
+          <Property Name="addedvaluetax" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="addedvaluetaxitem" Type="varchar" MaxLength="65" />
+          <Property Name="addedvaluetaxrate" Type="decimal" Scale="5" />
+          <Property Name="hasbusinesstax" Type="bit" />
+          <Property Name="businesstax" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="businesstaxitem" Type="varchar" MaxLength="65" />
+          <Property Name="businestaxrate" Type="decimal" Scale="5" />
+          <Property Name="haseducationsurtax" Type="bit" />
+          <Property Name="educationsurtax" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="educationsurtaxitem" Type="varchar" MaxLength="65" />
+          <Property Name="educationsurtaxrate" Type="decimal" Scale="5" />
+          <Property Name="hasurbantax" Type="bit" />
+          <Property Name="urbantax" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="urbantaxitem" Type="varchar" MaxLength="65" />
+          <Property Name="urbantaxrate" Type="decimal" Scale="5" />
+          <Property Name="haslocaleducationsurtax" Type="bit" />
+          <Property Name="localeducationsurtax" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="localeducationsurtaxitem" Type="varchar" MaxLength="65" />
+          <Property Name="localeducationsurtaxrate" Type="decimal" Scale="5" />
+          <Property Name="hasstamptax" Type="bit" />
+          <Property Name="stamptax" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="stamptaxitem" Type="varchar" MaxLength="65" />
+          <Property Name="stamptaxrate" Type="decimal" Scale="5" />
+          <Property Name="hasincometax" Type="bit" />
+          <Property Name="incometax" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="incometaxitem" Type="varchar" MaxLength="65" />
+          <Property Name="incometaxrate" Type="decimal" Scale="5" />
+          <Property Name="invoicenumber" Type="varchar" MaxLength="45" />
+          <Property Name="taxreceiptnumber" Type="varchar" MaxLength="45" />
+          <Property Name="groupid" Type="int" />
+          <Property Name="economicnature" Type="varchar" MaxLength="100" />
+          <Property Name="phonenumber" Type="varchar" MaxLength="45" />
+          <Property Name="totaltaxrate" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="note" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="systemlog">
+          <Key>
+            <PropertyRef Name="system_log_id" />
+          </Key>
+          <Property Name="system_log_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="system_log" Type="text" />
+        </EntityType>
+        <EntityType Name="taxpayer">
+          <Key>
+            <PropertyRef Name="taxpayer_id" />
+          </Key>
+          <Property Name="taxpayer_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="taxpayer_code" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_name" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_type_id" Type="int" />
+          <Property Name="taxpayer_group_id" Type="int" />
+          <Property Name="taxpayer_regyear" Type="varchar" MaxLength="45" />
+          <Property Name="taxpayer_project" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_project_finish" Type="bit" />
+          <Property Name="taxpayer_res1" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_res2" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_res3" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_res4" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_isfree" Type="bit" />
+          <Property Name="taxpayer_ftk" Type="bit" />
+        </EntityType>
+        <EntityType Name="taxpayerdocument">
+          <Key>
+            <PropertyRef Name="taxpayer_document_id" />
+          </Key>
+          <Property Name="taxpayer_document_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="taxpayer_id" Type="int" />
+          <Property Name="taxpayer_document_name" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_document_type_id" Type="int" />
+          <Property Name="taxpayer_document_descript" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_update_user_id" Type="int" />
+          <Property Name="taxpayer_update_time" Type="datetime" />
+          <Property Name="taxpayer_document_bytes" Type="bigint" />
+          <Property Name="taxpayer_document_res1" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_document_res2" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_document_res3" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_document_res4" Type="varchar" MaxLength="400" />
+          <Property Name="taxpayer_islink" Type="bit" />
+          <Property Name="taxpayer_linkid" Type="int" />
+        </EntityType>
+        <EntityType Name="taxpayertype">
+          <Key>
+            <PropertyRef Name="taxpayertype_id" />
+          </Key>
+          <Property Name="taxpayertype_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="taxpayertype_name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="varchar" MaxLength="45" />
+          <Property Name="user_password" Type="varchar" MaxLength="45" />
+          <Property Name="user_cname" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="useraction">
+          <Key>
+            <PropertyRef Name="user_action_id" />
+          </Key>
+          <Property Name="user_action_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="action_id" Type="int" />
+          <Property Name="hasRight" Type="bit" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="documentmanagerModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="documentmanagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="action" EntityType="documentmanagerModel.action" />
+          <EntitySet Name="filetype" EntityType="documentmanagerModel.filetype" />
+          <EntitySet Name="systemlog" EntityType="documentmanagerModel.systemlog" />
+          <EntitySet Name="taxpayer" EntityType="documentmanagerModel.taxpayer" />
+          <EntitySet Name="taxpayerdocument" EntityType="documentmanagerModel.taxpayerdocument" />
+          <EntitySet Name="taxpayertype" EntityType="documentmanagerModel.taxpayertype" />
+          <EntitySet Name="user" EntityType="documentmanagerModel.user" />
+          <EntitySet Name="useraction" EntityType="documentmanagerModel.useraction" />
+          <EntitySet Name="standbook" EntityType="documentmanagerModel.standbook" />
+        </EntityContainer>
+        <EntityType Name="action">
+          <Key>
+            <PropertyRef Name="action_id" />
+          </Key>
+          <Property Type="Int32" Name="action_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="action_name" />
+          <Property Type="Int32" Name="supper_action_id" />
+        </EntityType>
+        <EntityType Name="filetype">
+          <Key>
+            <PropertyRef Name="file_type_id" />
+          </Key>
+          <Property Type="Int32" Name="file_type_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="file_type_name" />
+        </EntityType>
+        <EntityType Name="systemlog">
+          <Key>
+            <PropertyRef Name="system_log_id" />
+          </Key>
+          <Property Type="Int32" Name="system_log_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="system_log" />
+        </EntityType>
+        <EntityType Name="taxpayer">
+          <Key>
+            <PropertyRef Name="taxpayer_id" />
+          </Key>
+          <Property Type="Int32" Name="taxpayer_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="taxpayer_code" />
+          <Property Type="String" Name="taxpayer_name" />
+          <Property Type="Int32" Name="taxpayer_type_id" />
+          <Property Type="Int32" Name="taxpayer_group_id" />
+          <Property Type="String" Name="taxpayer_project" />
+          <Property Type="Boolean" Name="taxpayer_project_finish" />
+          <Property Type="String" Name="taxpayer_res1" />
+          <Property Type="String" Name="taxpayer_res2" />
+          <Property Type="String" Name="taxpayer_res3" />
+          <Property Type="String" Name="taxpayer_res4" />
+          <Property Type="String" Name="taxpayer_regyear" />
+          <Property Type="Boolean" Name="taxpayer_isfree" />
+          <Property Type="Boolean" Name="taxpayer_ftk" />
+        </EntityType>
+        <EntityType Name="taxpayerdocument">
+          <Key>
+            <PropertyRef Name="taxpayer_document_id" />
+          </Key>
+          <Property Type="Int32" Name="taxpayer_document_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="taxpayer_id" />
+          <Property Type="String" Name="taxpayer_document_name" />
+          <Property Type="Int32" Name="taxpayer_document_type_id" />
+          <Property Type="String" Name="taxpayer_document_descript" />
+          <Property Type="Int32" Name="taxpayer_update_user_id" />
+          <Property Type="DateTime" Name="taxpayer_update_time" />
+          <Property Type="Int64" Name="taxpayer_document_bytes" />
+          <Property Type="String" Name="taxpayer_document_res1" />
+          <Property Type="String" Name="taxpayer_document_res2" />
+          <Property Type="String" Name="taxpayer_document_res3" />
+          <Property Type="String" Name="taxpayer_document_res4" />
+          <Property Type="Boolean" Name="taxpayer_islink" />
+          <Property Type="Int32" Name="taxpayer_linkid" />
+        </EntityType>
+        <EntityType Name="taxpayertype">
+          <Key>
+            <PropertyRef Name="taxpayertype_id" />
+          </Key>
+          <Property Type="Int32" Name="taxpayertype_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="taxpayertype_name" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Type="Int32" Name="user_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="user_name" />
+          <Property Type="String" Name="user_password" />
+          <Property Type="String" Name="user_cname" />
+        </EntityType>
+        <EntityType Name="useraction">
+          <Key>
+            <PropertyRef Name="user_action_id" />
+          </Key>
+          <Property Type="Int32" Name="user_action_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="Int32" Name="action_id" />
+          <Property Type="Boolean" Name="hasRight" />
+        </EntityType>
+        <EntityType Name="standbook">
+          <Key>
+            <PropertyRef Name="standbook_id" />
+          </Key>
+          <Property Type="String" Name="standbook_id" Nullable="false" />
+          <Property Type="String" Name="projectname" />
+          <Property Type="Decimal" Name="totalmoney" />
+          <Property Type="String" Name="taxpayername" />
+          <Property Type="String" Name="taxpayerpersonname" />
+          <Property Type="String" Name="capitalcontruction" />
+          <Property Type="Boolean" Name="hasoutverify" />
+          <Property Type="DateTime" Name="paytime" />
+          <Property Type="Decimal" Name="thispartmoney" />
+          <Property Type="Boolean" Name="hasaddedvaluetax" />
+          <Property Type="Decimal" Name="addedvaluetax" />
+          <Property Type="String" Name="addedvaluetaxitem" />
+          <Property Type="Decimal" Name="addedvaluetaxrate" />
+          <Property Type="Boolean" Name="hasbusinesstax" />
+          <Property Type="Decimal" Name="businesstax" />
+          <Property Type="String" Name="businesstaxitem" />
+          <Property Type="Decimal" Name="businestaxrate" />
+          <Property Type="Boolean" Name="haseducationsurtax" />
+          <Property Type="Decimal" Name="educationsurtax" />
+          <Property Type="String" Name="educationsurtaxitem" />
+          <Property Type="Decimal" Name="educationsurtaxrate" />
+          <Property Type="Boolean" Name="hasurbantax" />
+          <Property Type="Decimal" Name="urbantax" />
+          <Property Type="String" Name="urbantaxitem" />
+          <Property Type="Decimal" Name="urbantaxrate" />
+          <Property Type="Boolean" Name="haslocaleducationsurtax" />
+          <Property Type="Decimal" Name="localeducationsurtax" />
+          <Property Type="String" Name="localeducationsurtaxitem" />
+          <Property Type="Decimal" Name="localeducationsurtaxrate" />
+          <Property Type="Boolean" Name="hasstamptax" />
+          <Property Type="Decimal" Name="stamptax" />
+          <Property Type="String" Name="stamptaxitem" />
+          <Property Type="Decimal" Name="stamptaxrate" />
+          <Property Type="Boolean" Name="hasincometax" />
+          <Property Type="Decimal" Name="incometax" />
+          <Property Type="String" Name="incometaxitem" />
+          <Property Type="Decimal" Name="incometaxrate" />
+          <Property Type="String" Name="invoicenumber" />
+          <Property Type="String" Name="taxreceiptnumber" />
+          <Property Type="Int32" Name="groupid" />
+          <Property Type="String" Name="economicnature" />
+          <Property Type="String" Name="phonenumber" />
+          <Property Type="Decimal" Name="totaltaxrate" />
+          <Property Type="String" Name="note" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="documentmanagerModelStoreContainer" CdmEntityContainer="documentmanagerEntities">
+          <EntitySetMapping Name="action">
+            <EntityTypeMapping TypeName="documentmanagerModel.action">
+              <MappingFragment StoreEntitySet="action">
+                <ScalarProperty Name="supper_action_id" ColumnName="supper_action_id" />
+                <ScalarProperty Name="action_name" ColumnName="action_name" />
+                <ScalarProperty Name="action_id" ColumnName="action_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="filetype">
+            <EntityTypeMapping TypeName="documentmanagerModel.filetype">
+              <MappingFragment StoreEntitySet="filetype">
+                <ScalarProperty Name="file_type_name" ColumnName="file_type_name" />
+                <ScalarProperty Name="file_type_id" ColumnName="file_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="systemlog">
+            <EntityTypeMapping TypeName="documentmanagerModel.systemlog">
+              <MappingFragment StoreEntitySet="systemlog">
+                <ScalarProperty Name="system_log" ColumnName="system_log" />
+                <ScalarProperty Name="system_log_id" ColumnName="system_log_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taxpayer">
+            <EntityTypeMapping TypeName="documentmanagerModel.taxpayer">
+              <MappingFragment StoreEntitySet="taxpayer">
+                <ScalarProperty Name="taxpayer_ftk" ColumnName="taxpayer_ftk" />
+                <ScalarProperty Name="taxpayer_isfree" ColumnName="taxpayer_isfree" />
+                <ScalarProperty Name="taxpayer_regyear" ColumnName="taxpayer_regyear" />
+                <ScalarProperty Name="taxpayer_res4" ColumnName="taxpayer_res4" />
+                <ScalarProperty Name="taxpayer_res3" ColumnName="taxpayer_res3" />
+                <ScalarProperty Name="taxpayer_res2" ColumnName="taxpayer_res2" />
+                <ScalarProperty Name="taxpayer_res1" ColumnName="taxpayer_res1" />
+                <ScalarProperty Name="taxpayer_project_finish" ColumnName="taxpayer_project_finish" />
+                <ScalarProperty Name="taxpayer_project" ColumnName="taxpayer_project" />
+                <ScalarProperty Name="taxpayer_group_id" ColumnName="taxpayer_group_id" />
+                <ScalarProperty Name="taxpayer_type_id" ColumnName="taxpayer_type_id" />
+                <ScalarProperty Name="taxpayer_name" ColumnName="taxpayer_name" />
+                <ScalarProperty Name="taxpayer_code" ColumnName="taxpayer_code" />
+                <ScalarProperty Name="taxpayer_id" ColumnName="taxpayer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taxpayerdocument">
+            <EntityTypeMapping TypeName="documentmanagerModel.taxpayerdocument">
+              <MappingFragment StoreEntitySet="taxpayerdocument">
+                <ScalarProperty Name="taxpayer_linkid" ColumnName="taxpayer_linkid" />
+                <ScalarProperty Name="taxpayer_islink" ColumnName="taxpayer_islink" />
+                <ScalarProperty Name="taxpayer_document_res4" ColumnName="taxpayer_document_res4" />
+                <ScalarProperty Name="taxpayer_document_res3" ColumnName="taxpayer_document_res3" />
+                <ScalarProperty Name="taxpayer_document_res2" ColumnName="taxpayer_document_res2" />
+                <ScalarProperty Name="taxpayer_document_res1" ColumnName="taxpayer_document_res1" />
+                <ScalarProperty Name="taxpayer_document_bytes" ColumnName="taxpayer_document_bytes" />
+                <ScalarProperty Name="taxpayer_update_time" ColumnName="taxpayer_update_time" />
+                <ScalarProperty Name="taxpayer_update_user_id" ColumnName="taxpayer_update_user_id" />
+                <ScalarProperty Name="taxpayer_document_descript" ColumnName="taxpayer_document_descript" />
+                <ScalarProperty Name="taxpayer_document_type_id" ColumnName="taxpayer_document_type_id" />
+                <ScalarProperty Name="taxpayer_document_name" ColumnName="taxpayer_document_name" />
+                <ScalarProperty Name="taxpayer_id" ColumnName="taxpayer_id" />
+                <ScalarProperty Name="taxpayer_document_id" ColumnName="taxpayer_document_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taxpayertype">
+            <EntityTypeMapping TypeName="documentmanagerModel.taxpayertype">
+              <MappingFragment StoreEntitySet="taxpayertype">
+                <ScalarProperty Name="taxpayertype_name" ColumnName="taxpayertype_name" />
+                <ScalarProperty Name="taxpayertype_id" ColumnName="taxpayertype_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="documentmanagerModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_cname" ColumnName="user_cname" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="useraction">
+            <EntityTypeMapping TypeName="documentmanagerModel.useraction">
+              <MappingFragment StoreEntitySet="useraction">
+                <ScalarProperty Name="hasRight" ColumnName="hasRight" />
+                <ScalarProperty Name="action_id" ColumnName="action_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_action_id" ColumnName="user_action_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="standbook">
+            <EntityTypeMapping TypeName="documentmanagerModel.standbook">
+              <MappingFragment StoreEntitySet="standbook">
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="totaltaxrate" ColumnName="totaltaxrate" />
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="economicnature" ColumnName="economicnature" />
+                <ScalarProperty Name="groupid" ColumnName="groupid" />
+                <ScalarProperty Name="taxreceiptnumber" ColumnName="taxreceiptnumber" />
+                <ScalarProperty Name="invoicenumber" ColumnName="invoicenumber" />
+                <ScalarProperty Name="incometaxrate" ColumnName="incometaxrate" />
+                <ScalarProperty Name="incometaxitem" ColumnName="incometaxitem" />
+                <ScalarProperty Name="incometax" ColumnName="incometax" />
+                <ScalarProperty Name="hasincometax" ColumnName="hasincometax" />
+                <ScalarProperty Name="stamptaxrate" ColumnName="stamptaxrate" />
+                <ScalarProperty Name="stamptaxitem" ColumnName="stamptaxitem" />
+                <ScalarProperty Name="stamptax" ColumnName="stamptax" />
+                <ScalarProperty Name="hasstamptax" ColumnName="hasstamptax" />
+                <ScalarProperty Name="localeducationsurtaxrate" ColumnName="localeducationsurtaxrate" />
+                <ScalarProperty Name="localeducationsurtaxitem" ColumnName="localeducationsurtaxitem" />
+                <ScalarProperty Name="localeducationsurtax" ColumnName="localeducationsurtax" />
+                <ScalarProperty Name="haslocaleducationsurtax" ColumnName="haslocaleducationsurtax" />
+                <ScalarProperty Name="urbantaxrate" ColumnName="urbantaxrate" />
+                <ScalarProperty Name="urbantaxitem" ColumnName="urbantaxitem" />
+                <ScalarProperty Name="urbantax" ColumnName="urbantax" />
+                <ScalarProperty Name="hasurbantax" ColumnName="hasurbantax" />
+                <ScalarProperty Name="educationsurtaxrate" ColumnName="educationsurtaxrate" />
+                <ScalarProperty Name="educationsurtaxitem" ColumnName="educationsurtaxitem" />
+                <ScalarProperty Name="educationsurtax" ColumnName="educationsurtax" />
+                <ScalarProperty Name="haseducationsurtax" ColumnName="haseducationsurtax" />
+                <ScalarProperty Name="businestaxrate" ColumnName="businestaxrate" />
+                <ScalarProperty Name="businesstaxitem" ColumnName="businesstaxitem" />
+                <ScalarProperty Name="businesstax" ColumnName="businesstax" />
+                <ScalarProperty Name="hasbusinesstax" ColumnName="hasbusinesstax" />
+                <ScalarProperty Name="addedvaluetaxrate" ColumnName="addedvaluetaxrate" />
+                <ScalarProperty Name="addedvaluetaxitem" ColumnName="addedvaluetaxitem" />
+                <ScalarProperty Name="addedvaluetax" ColumnName="addedvaluetax" />
+                <ScalarProperty Name="hasaddedvaluetax" ColumnName="hasaddedvaluetax" />
+                <ScalarProperty Name="thispartmoney" ColumnName="thispartmoney" />
+                <ScalarProperty Name="paytime" ColumnName="paytime" />
+                <ScalarProperty Name="hasoutverify" ColumnName="hasoutverify" />
+                <ScalarProperty Name="capitalcontruction" ColumnName="capitalcontruction" />
+                <ScalarProperty Name="taxpayerpersonname" ColumnName="taxpayerpersonname" />
+                <ScalarProperty Name="taxpayername" ColumnName="taxpayername" />
+                <ScalarProperty Name="totalmoney" ColumnName="totalmoney" />
+                <ScalarProperty Name="projectname" ColumnName="projectname" />
+                <ScalarProperty Name="standbook_id" ColumnName="standbook_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DocumentManager">
+        <EntityTypeShape EntityType="documentmanagerModel.action" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5506396484375" />
+        <EntityTypeShape EntityType="documentmanagerModel.filetype" Width="1.5" PointX="2.75" PointY="0.75" Height="1.3658455403645835" />
+        <EntityTypeShape EntityType="documentmanagerModel.systemlog" Width="1.5" PointX="0.75" PointY="3.75" Height="1.3658455403645822" />
+        <EntityTypeShape EntityType="documentmanagerModel.taxpayer" Width="1.5" PointX="2.75" PointY="3.75" Height="1.7354337565104157" />
+        <EntityTypeShape EntityType="documentmanagerModel.taxpayerdocument" Width="1.5" PointX="4.75" PointY="0.75" Height="2.4746101888020835" />
+        <EntityTypeShape EntityType="documentmanagerModel.taxpayertype" Width="1.5" PointX="4.75" PointY="4.75" Height="1.3658455403645817" />
+        <EntityTypeShape EntityType="documentmanagerModel.user" Width="1.5" PointX="6.75" PointY="0.75" Height="1.7354337565104174" />
+        <EntityTypeShape EntityType="documentmanagerModel.useraction" Width="1.5" PointX="6.875" PointY="4.75" Height="1.7354337565104174" />
+        <EntityTypeShape EntityType="documentmanagerModel.standbook" Width="1.5" PointX="8.875" PointY="0.75" Height="9.1271980794270817" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

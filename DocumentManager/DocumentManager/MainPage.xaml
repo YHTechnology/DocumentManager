@@ -1,0 +1,149 @@
+﻿<UserControl
+    x:Class="DocumentManager.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+    xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" FontFamily="Microsoft YaHei" 
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" Loaded="UserControl_Loaded">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
+                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                <navigation:Frame.UriMapper>
+                    <uriMapper:UriMapper>
+                        <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
+                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                    </uriMapper:UriMapper>
+                </navigation:Frame.UriMapper>
+            </navigation:Frame>
+        </Border>
+
+        <toolkit:Accordion HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Stretch" Width="150">
+            <toolkit:AccordionItem Header="首页">
+                <toolkit:AccordionItem.Content>
+                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Width="145">
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a0"
+                                     NavigateUri="/Home" TargetName="ContentFrame" Content="首页" />
+                    </StackPanel>
+                </toolkit:AccordionItem.Content>
+            </toolkit:AccordionItem>
+            <toolkit:AccordionItem Header="档案管理" Visibility="{Binding DocManager}">
+                <toolkit:AccordionItem.Content>
+                    <StackPanel Name="docManager" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Width="145">
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000011"
+                                     NavigateUri="/DocumentManagerJA" TargetName="ContentFrame" Content="建安代开档案" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000012"
+                                     NavigateUri="/DocumentManagerPP" TargetName="ContentFrame" Content="普票代开档案" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000013"
+                                     NavigateUri="/DocumentManagerZP" TargetName="ContentFrame" Content="专票代开档案" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000014"
+                                     NavigateUri="/DocumentManager" TargetName="ContentFrame" Content="固定户档案" />
+                    </StackPanel>
+                </toolkit:AccordionItem.Content>
+            </toolkit:AccordionItem>
+            <toolkit:AccordionItem Header="档案查询" Visibility="{Binding DocSearch}">
+                <toolkit:AccordionItem.Content>
+                    <StackPanel Name="docSearch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Width="145">
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000021"
+                                     NavigateUri="/DocumentSearchGD" TargetName="ContentFrame" Content="固定户档案查询" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000022"
+                                     NavigateUri="/DocumentSearchJA" TargetName="ContentFrame" Content="建安档案查询" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000023"
+                                     NavigateUri="/DocumentSearchPP" TargetName="ContentFrame" Content="普票查询" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000024"
+                                     NavigateUri="/DocumentSearchZP" TargetName="ContentFrame" Content="专票查询" />
+                    </StackPanel>
+                </toolkit:AccordionItem.Content>
+            </toolkit:AccordionItem>
+            <toolkit:AccordionItem Header="代开台账" Visibility="{Binding ProxyBook}">
+                <toolkit:AccordionItem.Content>
+                    <StackPanel Name="proxyBook" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Width="145">
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000031"
+                                     NavigateUri="/JAStandBook" TargetName="ContentFrame" Content="建安台账" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000032"
+                                     NavigateUri="/PPStandBook" TargetName="ContentFrame" Content="普票台账" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000033"
+                                     NavigateUri="/ZPStandBook" TargetName="ContentFrame" Content="专票台账" />
+                    </StackPanel>
+                </toolkit:AccordionItem.Content>
+            </toolkit:AccordionItem>
+            <toolkit:AccordionItem Header="系统管理" Visibility="{Binding SystemManager}">
+                <toolkit:AccordionItem.Content>
+                    <StackPanel Name="systemManager" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Width="145">
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000041"
+                                     NavigateUri="/UserManager" TargetName="ContentFrame" Content="人员管理" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000042"
+                                     NavigateUri="/UserActionManager" TargetName="ContentFrame" Content="人员权限设置" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000043"
+                                     NavigateUri="/FileTypeManager" TargetName="ContentFrame" Content="档案类型" />
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource TALinkStyle}" Name="a1000044"
+                                     NavigateUri="/TaxPayerTypeManager" TargetName="ContentFrame" Content="注册类型" />
+                    </StackPanel>
+                </toolkit:AccordionItem.Content>
+            </toolkit:AccordionItem>
+        </toolkit:Accordion>
+        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+            <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+                    <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
+                               Text="曲松县国家税务局 档案管理系统" />
+                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Center" Margin="50,0,0,0" />
+                    <Button Content="修改密码" Command="{Binding OnModifyPassword}" Margin="5,0,0,0"/>
+                    <Button Content="退出" Command="{Binding OnLogout}" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!--
+            <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+                <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+
+                    <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/Home" TargetName="ContentFrame" Content="首页"/>
+
+                    <Rectangle x:Name="Divider" Style="{StaticResource DividerStyle}"/>
+                    
+                    <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/TaxPayerManager" TargetName="ContentFrame" Content="纳税人管理"/>
+
+                    <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
+
+                    <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/DocumentManager" TargetName="ContentFrame" Content="档案"/>
+                    
+                    <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
+                    
+                    <HyperlinkButton x:Name="Link4" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/SystemManager" TargetName="ContentFrame" Content="系统管理"/>
+                    
+                    <Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}"/>
+
+                    <HyperlinkButton x:Name="Link5" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/LogonUser" TargetName="ContentFrame" Content="{Binding UserName}"/>
+                    
+                    <Rectangle x:Name="Divider4" Style="{StaticResource DividerStyle}"/>
+                    
+                    <HyperlinkButton x:Name="Link6" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/About" TargetName="ContentFrame" Content="关于"/>
+                </StackPanel>
+            </Border>
+-->
+        </Grid>
+
+    </Grid>
+
+</UserControl>

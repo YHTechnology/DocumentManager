@@ -1,0 +1,62 @@
+﻿<controls:ChildWindow x:Class="DocumentManager.Views.MergeImages"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+           FontFamily="Microsoft YaHei" Style="{StaticResource ChildWindowStyle}"
+           Title="{Binding Title}"
+           Width="895" Height="406" FontSize="12">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <sdk:DataGrid AutoGenerateColumns="False"
+                      ItemsSource="{Binding ImagesList}"
+                      Margin="0,34,0,0"
+                      HorizontalAlignment="Left"
+                      Width="715"
+                      Grid.Column="0"
+                      SelectedIndex="{Binding SelectedFileIndex, Mode=TwoWay}">
+            <sdk:DataGrid.Resources>
+                <DataTemplate x:Key="DateTemplate">
+                    <StackPanel Orientation="Horizontal" Height="30">
+                        <Button Content="向上" Command="{Binding UpCommand}" Margin="4,2,6,2"/>
+                        <Button Content="向下" Command="{Binding DownCommand}" Margin="4,2,6,2"/>
+                        <Button Content="删除" Command="{Binding DeleteCommand}" Margin="4,2,6,2"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate x:Key="ThumbTemplate">
+                    <Image  Source="{Binding Path=ThumbImage}" Height="60" Width="80"/>
+                </DataTemplate>
+            </sdk:DataGrid.Resources>
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTemplateColumn CellTemplate="{StaticResource ThumbTemplate}">
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTextColumn Binding="{Binding Path=FilePath, Mode=OneWay}"
+                                        Header="文件路径" Width="400"  >
+                </sdk:DataGridTextColumn >
+                <sdk:DataGridTemplateColumn CellTemplate="{StaticResource DateTemplate}">
+                </sdk:DataGridTemplateColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+
+        <Button x:Name="CreatePDFButton" Content="生成PDF" Command="{Binding OnCreatePDFFile}" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,158,0" Grid.Row="1" />
+        <Button x:Name="CancelButton" Content="关闭" Command="{Binding OnCancel}" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="上传" Command="{Binding OnUpdate}" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+        <TextBlock Text="生成PDF文件名称" HorizontalAlignment="Left" Margin="10,14,0,0" Grid.Row="1"/>
+        <TextBox x:Name="PDFName" Width="200" Height="23" HorizontalAlignment="Left" Margin="120,8,0,0" Grid.Row="1" Text="{Binding PDFFileName, Mode=TwoWay}" />
+        <ComboBox Height="26" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top" Width="163" 
+                  ItemsSource="{Binding FileTypeEntityList}"
+                  DisplayMemberPath="FileTypeName"
+                  SelectedItem="{Binding SelectFileTypeEntity, Mode=TwoWay}"
+                  SelectedValuePath="FileTypeId"/>
+        <Border BorderBrush="Silver" BorderThickness="1" Height="300" Margin="720,34,-1,0" Name="border1" VerticalAlignment="Top">
+            <TextBlock Text="拖动文件到这儿添加" TextAlignment="Center" FontStretch="Normal" FontWeight="Normal" Height="Auto" Drop="MultiFileDrop" AllowDrop="True"/>
+        </Border>
+        <ProgressBar HorizontalAlignment="Left" Margin="332,12,0,0" Grid.Row="1" VerticalAlignment="Top" Width="295" Height="21" Value="{Binding UserFile.Percentage2}" Visibility="{Binding ShowProgress}"/>
+    </Grid>
+</controls:ChildWindow>

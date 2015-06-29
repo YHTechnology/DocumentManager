@@ -1,0 +1,47 @@
+﻿<navigation:Page x:Class="DocumentManager.Views.SystemManager" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+           xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480" FontSize="12" FontFamily="Microsoft YaHei"
+           Title="SystemManager Page">
+    <Grid x:Name="LayoutRoot">
+        <Border x:Name="ContentBorder" Margin="130,0,0,0">
+
+            <navigation:Frame x:Name="ContentFrameManager"
+                              Source="/UserManager" Navigated="ContentFrameManager_Navigated">
+                <navigation:Frame.UriMapper>
+                    <uriMapper:UriMapper>
+                        <uriMapper:UriMapping Uri="" MappedUri="/Views/UserManager.xaml"/>
+                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                    </uriMapper:UriMapper>
+                </navigation:Frame.UriMapper>
+            </navigation:Frame>
+        </Border>
+
+        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyleLeft}" HorizontalAlignment="Left" Width="130">
+
+            <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyleLeft}">
+                <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyleLeft}" Orientation="Vertical" Width="130">
+
+                    <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/UserManager" TargetName="ContentFrameManager" Content="用户管理"/>
+
+
+                    <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/FileTypeManager" TargetName="ContentFrameManager" Content="档案类型管理"/>
+
+
+                    <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/TaxPayerTypeManager" TargetName="ContentFrameManager" Content="纳税人类型管理"/>
+
+                </StackPanel>
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</navigation:Page>
