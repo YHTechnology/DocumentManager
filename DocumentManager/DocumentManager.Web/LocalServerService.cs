@@ -21,85 +21,89 @@ namespace DocumentManager.Web
         /// <returns></returns>
         public int GetExpireDay()
         {
-            string str1 = System.Web.HttpContext.Current.Request.PhysicalApplicationPath;
-            string filepath = Path.Combine(str1, "serverService");
+            //string str1 = System.Web.HttpContext.Current.Request.PhysicalApplicationPath;
+            //string filepath = Path.Combine(str1, "serverService");
 
-            if (!File.Exists(filepath))
-            {
-                //return -1100;
+            //if (!File.Exists(filepath))
+            //{
+            //    //return -1100;
 
 
-                if (!HasRegInfo())
-                {
-                    //no local file and reg info
-                    //create local file and reg info
-                    if (CreateRegInfo())
-                    {
-                        using (StreamWriter sw = new StreamWriter(filepath))
-                        {
-                            try
-                            {
-                                sw.WriteLine(encodestring(DateTime.Now.AddDays(365).ToString()));
-                                return 364;
-                            }
-                            catch
-                            {
-                                //can create reg info, but can't create local file, return -1200
-                                RegistryKey rk = Registry.CurrentUser;
-                                RegistryKey software = rk.OpenSubKey("SOFTWARE", true);
-                                software.DeleteSubKey("DMServerService");
-                                return -1200;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //can't create reg info, return -1300
-                        return -1300;
-                    }
-                }
+            //    if (!HasRegInfo())
+            //    {
+            //        //no local file and reg info
+            //        //create local file and reg info
+            //        if (CreateRegInfo())
+            //        {
+            //            using (StreamWriter sw = new StreamWriter(filepath))
+            //            {
+            //                try
+            //                {
+            //                    sw.WriteLine(encodestring(DateTime.Now.AddDays(365).ToString()));
+            //                    return 364;
+            //                }
+            //                catch
+            //                {
+            //                    //can create reg info, but can't create local file, return -1200
+            //                    RegistryKey rk = Registry.CurrentUser;
+            //                    RegistryKey software = rk.OpenSubKey("SOFTWARE", true);
+            //                    software.DeleteSubKey("DMServerService");
+            //                    return -1200;
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            //can't create reg info, return -1300
+            //            return -1300;
+            //        }
+            //    }
 
-                else
-                {
-                    //has reg info, but no local file
-                    //consider as local file has been deleted intentionally, return -1100
-                    return -1100;
-                }
-            }
-            else
-            {
-                //using (StreamReader sr = new StreamReader(filepath))
-                //{
-                //    string tempstr1 = sr.ReadLine();
-                //    DateTime recordTime = DateTime.Parse(decodestring(tempstr1));
-                //    TimeSpan ts = recordTime - DateTime.Now;
-                //    return ts.Days;
-                //}
+            //    else
+            //    {
+            //        //has reg info, but no local file
+            //        //consider as local file has been deleted intentionally, return -1100
+            //        return -1100;
+            //    }
+            //}
+            //else
+            //{
+            //    //using (StreamReader sr = new StreamReader(filepath))
+            //    //{
+            //    //    string tempstr1 = sr.ReadLine();
+            //    //    DateTime recordTime = DateTime.Parse(decodestring(tempstr1));
+            //    //    TimeSpan ts = recordTime - DateTime.Now;
+            //    //    return ts.Days;
+            //    //}
 
-                if (HasRegInfo())
-                {
-                    using (StreamReader sr = new StreamReader(filepath))
-                    {
-                        string tempstr1 = sr.ReadLine();
-                        DateTime recordTime = DateTime.Parse(decodestring(tempstr1));
+            //    if (HasRegInfo())
+            //    {
+            //        using (StreamReader sr = new StreamReader(filepath))
+            //        {
+            //            string tempstr1 = sr.ReadLine();
+            //            DateTime recordTime = DateTime.Parse(decodestring(tempstr1));
 
-                        TimeSpan ts = recordTime - DateTime.Now;
+            //            TimeSpan ts = recordTime - DateTime.Now;
 
-                        return ts.Days;
+            //            return ts.Days;
 
-                    }
-                }
-                else
-                {
-                    //has local file, but no reg info
-                    //consider as reg info has been deleted intentionally, return -1000
-                    return -1000;
-                }
-            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        //has local file, but no reg info
+            //        //consider as reg info has been deleted intentionally, return -1000
+            //        return -1000;
+            //    }
+            //}
+
+            DateTime expirtDate = new DateTime(2016, 1, 1);
+            TimeSpan remainDate = expirtDate - DateTime.Now;
+            return remainDate.Days;
 
         }
 
-
+        /*
         private bool HasRegInfo()
         {
             try
@@ -143,6 +147,7 @@ namespace DocumentManager.Web
 
         }
 
+        */
         private string encodestring(string aStr)
         {
             StringBuilder sb = new StringBuilder();
